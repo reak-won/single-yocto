@@ -5,9 +5,10 @@ POKY_BBLAYERS_CONF_VERSION = "2"
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
+#OEROOT is poky
 BBLAYERS ?= " \
-  /home/ubuntu/yocto/poky/meta \
-  /home/ubuntu/yocto/poky/meta-poky \
-  /home/ubuntu/yocto/poky/meta-yocto-bsp \
-  /home/ubuntu/yocto/poky/meta-mine \
+  ##OEROOT##/meta \
+  ##OEROOT##/meta-poky \
+  ##OEROOT##/meta-yocto-bsp \
+  ##OEROOT##/../source/meta-mine \
   "

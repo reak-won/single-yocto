@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILDDIR = ./build
+BDIR="${PWD}/build"
 
 export TEMPLATECONF=${PWD}/source/meta-conf
-source poky/oe-init-build-env ${BUILDDIR}
+source poky/oe-init-build-env ${BDIR}
