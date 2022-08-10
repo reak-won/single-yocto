@@ -1,4 +1,4 @@
-DESCRIPTION = "my_test"
+DESCRIPTION = "sec"
 LICENSE = "CLOSED"
 
 PV = '1'
@@ -11,7 +11,7 @@ S = "${WORKDIR}/${PN}"
 
 #bb file vars
 IMAGE_LOCATION = "usr/bin"
-BIN_NAME = "my-test"
+BIN_NAME = "sec"
 #BBCLASSEXTEND = "native"
 
 do_install(){

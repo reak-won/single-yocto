@@ -10,5 +10,5 @@ BBLAYERS ?= " \
   ##OEROOT##/meta \
   ##OEROOT##/meta-poky \
   ##OEROOT##/meta-yocto-bsp \
-  ##OEROOT##/../source/meta-mine \
+  ##OEROOT##/../source/meta-sec \
   "
