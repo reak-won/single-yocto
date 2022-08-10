@@ -281,3 +281,9 @@ PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
 CONF_VERSION = "2"
 
 IMAGE_INSTALL:append = " my-test"
+
+# systemd enable
+DISTRO_FEATURES:append = " systemd"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED = " sysvinit"
+VIRTUAL-RUNTIME_initscripts = ""
