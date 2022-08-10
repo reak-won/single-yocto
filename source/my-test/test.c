@@ -2,5 +2,5 @@
 #include <unistd.h>
 
 int main(){
-	printf("hello! , yocto!!!\n");
+	printf("%s hello, yocto!\n",__func__);
 }
