@@ -280,7 +280,7 @@ PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
 # this doesn't mean anything to you.
 CONF_VERSION = "2"
 
-IMAGE_INSTALL:append = " sec"
+IMAGE_INSTALL:append = " sec-daemon"
 
 # systemd enable
 DISTRO_FEATURES:append = " systemd"
