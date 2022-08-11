@@ -1,0 +1,10 @@
+[Unit]
+Description=SEC daemon Service Script
+
+[Service]
+User=root
+ExecStart='/usr/bin/secd'
+
+[Install]
+WantedBy=multi-user.target
+
