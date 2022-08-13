@@ -8,6 +8,11 @@
 #include "../inc/sec_ipc.h"
 #include <errno.h>
 
+char* getSecIPCVersion(){
+	//Warning removal : ISO C++ forbids converting a string constant to 'char*'
+	return (char*)"1.0.0";
+}
+
 SecIPC::SecIPC(){
 	attr.mq_maxmsg = 20;
 	attr.mq_msgsize = 128;
@@ -38,3 +43,5 @@ int SecIPC::receiveIPCMessage(uint8_t *data, size_t *data_size){
 	*data_size = ret;
 	return IPC_ERR_NONE;
 }
+
+

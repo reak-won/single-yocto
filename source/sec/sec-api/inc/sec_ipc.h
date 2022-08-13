@@ -9,6 +9,7 @@
 #define IPC_ERR_MQSEND 2
 #define IPC_ERR_MQRECV 3
 
+char *getSecIPCVersion();
 class SecIPC{
 private:
 	mqd_t mq;
