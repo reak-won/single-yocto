@@ -4,6 +4,8 @@
 #include <mqueue.h>
 #include <stdint.h>
 
+#define IPC_COMMON_MQ_NAME "/mq_common"
+
 #define IPC_ERR_NONE 0
 #define IPC_ERR_MQOPEN 1
 #define IPC_ERR_MQSEND 2
@@ -19,5 +21,6 @@ public:
 	int openIPCMQ(const char* mq_name);
 	int sendIPCMessage(uint8_t* data,size_t data_size);
 	int receiveIPCMessage(uint8_t *data, size_t *data_size);
+	void closeIPC();
 };
 #endif

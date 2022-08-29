@@ -8,6 +8,7 @@ sec-daemon = "sec-daemon"
 sec-daemon-bin = "secd"
 sec-api = "sec-api"
 libsec-api = "libsecapi.so"
+sec-test = "sec-test"
 
 inherit cmake systemd
 FILESPATH =+ "/home/ubuntu/yocto/source/:"
@@ -25,6 +26,13 @@ SYSTEMD_AUTO:ENABLE = "enable"
 #bb file vars
 #BBCLASSEXTEND = "native"
 
+#non-version so file support
+INSANE_SKIP:${PN} = "ldflags"
+INHIBIT_PACKAGE_STRIP = "1"
+INHIBIT_SYSROOT_STRIP = "1"
+SOLIBS = ".so"
+FILES_SOLIBSDEV = ""
+
 do_install(){
 	#daemon install
 	install -d ${D}${bindir}
@@ -36,12 +44,13 @@ do_install(){
 
 	#install api so
 	install -d ${D}${libdir}
-	install -m 0666 ${B}/${sec-api}/${libsec-api} ${D}${libdir}/${libsec-api}.1.0.0
+	install -m 0777 ${B}/${sec-api}/${libsec-api} ${D}${libdir}/${libsec-api} #.1.0.0
+
+	#install test
+	install -m 0777 ${B}/${sec-test}/${sec-test} ${D}/${bindir}
+
 }
 #INSANE:SKIP:${PN} += "dev-so"
 
-#FILES:${PN} += "/lib/systemd/system/sec-daemon.service"
 FILES:${PN} += "${systemd_system_unitdir}"
-#FILES:${PN} += "/lib"
 FILES:${PN} += "/usr/lib64"
-
