@@ -1,0 +1,10 @@
+[Unit]
+Description=SEC Core Service Script
+Before=sec-daemon.service
+
+[Service]
+User=root
+ExecStart="/usr/bin/sec-core"
+
+[Install]
+WantedBy=multi-user.target

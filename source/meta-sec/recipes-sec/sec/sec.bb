@@ -5,6 +5,7 @@ PV = '1'
 
 #vars for package
 sec-daemon = "sec-daemon"
+sec-core = "sec-core"
 sec-daemon-bin = "secd"
 sec-api = "sec-api"
 libsec-api = "libsecapi.so"
@@ -15,13 +16,12 @@ FILESPATH =+ "/home/ubuntu/yocto/source/:"
 SRC_URI = "file://sec"
 S = "${WORKDIR}/sec"
 
-#secd systemd enabl
+#secd systemd enable
 DEPENDS ?= ""
 DEPENDS =+ " systemd"
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE:${PN} = "sec-daemon.service"
+SYSTEMD_SERVICE:${PN} = "sec-daemon.service sec-core.service"
 SYSTEMD_AUTO:ENABLE = "enable"
-
 
 #bb file vars
 #BBCLASSEXTEND = "native"
@@ -37,10 +37,18 @@ do_install(){
 	#daemon install
 	install -d ${D}${bindir}
 	install -m 0777 ${B}/${sec-daemon}/${sec-daemon-bin} ${D}/${bindir}
+
+	#core install
+	install -d ${D}${bindir}
+	install -m 0777 ${B}/${sec-core}/${sec-core} ${D}/${bindir}
 	
 	#daemon service install
 	install -d ${D}${systemd_system_unitdir}
 	install -m 0666 ${WORKDIR}/${PN}/${sec-daemon}/${sec-daemon}.service ${D}${systemd_system_unitdir}
+
+	#core service install
+	install -d ${D}${systemd_system_unitdir}
+	install -m 0666 ${WORKDIR}/${PN}/${sec-core}/${sec-core}.service ${D}${systemd_system_unitdir}
 
 	#install api so
 	install -d ${D}${libdir}
