@@ -12,7 +12,8 @@ libsec-api = "libsecapi.so"
 sec-test = "sec-test"
 
 inherit cmake systemd
-FILESPATH =+ "/home/ubuntu/yocto/source/:"
+FILESPATH =+ "file://home/ubuntu/yocto/source/:"
+#FILESPATH =+ "${MY_WORKSPACE}"
 SRC_URI = "file://sec"
 S = "${WORKDIR}/sec"
 
