@@ -9,17 +9,18 @@
 #define IPC_SHM_NAME "/sec-shm"
 #define IPC_SHM_MAX_SIZE 512
 
-#define IPC_ERR_NONE 0x0
-#define IPC_ERR_MQOPEN 0x1
-#define IPC_ERR_MQSEND 0x2
-#define IPC_ERR_MQRECV 0x3
+#define IPC_ERR_NONE 0u
+#define IPC_ERR_MQOPEN 1u
+#define IPC_ERR_MQSEND 2u
+#define IPC_ERR_MQRECV 3u
 
-#define IPC_ERR_SHMOPEN 0x51
-#define IPC_ERR_SHMSEND 0x52
-#define IPC_ERR_SHMRECV 0x53
-#define IPC_ERR_FTRUNC 0x54
-#define IPC_ERR_MAP_FAILED 0x55
-#define IPC_ERR_UNLINK 0x56
+#define IPC_ERR_SHMOPEN 51u
+#define IPC_ERR_SHMSEND 52u
+#define IPC_ERR_SHMRECV 53u
+#define IPC_ERR_FTRUNC 54u
+#define IPC_ERR_MAP_FAILED 55u
+#define IPC_ERR_UNLINK 56u
+#define IPC_ERR_MUNMAP 57u
 
 
 char *getSecIPCVersion();

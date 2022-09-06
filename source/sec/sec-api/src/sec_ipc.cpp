@@ -61,7 +61,7 @@ int SecIPC::openIPCShm(){
 	int ret = IPC_ERR_NONE;
 	shmfd = shm_open(IPC_SHM_NAME, O_RDWR|O_CREAT, S_IRUSR|S_IWUSR);
 	if(shmfd == -1)	return IPC_ERR_SHMOPEN;
-
+	
 	ret = ftruncate(shmfd, IPC_SHM_MAX_SIZE);
 	if(ret == -1) return IPC_ERR_FTRUNC;
 
@@ -69,6 +69,7 @@ int SecIPC::openIPCShm(){
 }
 
 int SecIPC::sendIPCMessageShm(uint8_t *data, size_t data_size){
+
 	void *addr = mmap(NULL, IPC_SHM_MAX_SIZE, PROT_WRITE, MAP_SHARED, shmfd, 0);
 	if(addr == MAP_FAILED)
 		return IPC_ERR_MAP_FAILED;
@@ -78,10 +79,13 @@ int SecIPC::sendIPCMessageShm(uint8_t *data, size_t data_size){
 }
 
 int SecIPC::receiveIPCMessageShm(uint8_t *data, size_t *data_size){
+	int ret = 0;
 	void *addr = mmap(NULL, IPC_SHM_MAX_SIZE, PROT_READ, MAP_SHARED, shmfd, 0);
 	if(addr == MAP_FAILED)
 		return IPC_ERR_MAP_FAILED;
 	memcpy(data, addr, IPC_SHM_MAX_SIZE);
+	ret = munmap(addr, IPC_SHM_MAX_SIZE);
+	if(ret == -1) return IPC_ERR_MUNMAP;
 	return IPC_ERR_NONE;
 }
 
