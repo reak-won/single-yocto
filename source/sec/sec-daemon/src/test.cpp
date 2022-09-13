@@ -98,14 +98,27 @@ void ipc_mq_test(){
 	}
 
 	ofs<<"ipc open "<<ret<<std::endl;
-	uint8_t data[512] = {0,};
-	size_t data_size;
-	if((ret = ipc->receiveIPCMessageMQ(data, &data_size)) != IPC_ERR_NONE){
-		ofs<<"ipc receive error:"<<ret<<std::endl;
-		return; 
+
+	//echo loop
+	while(1){
+		uint8_t data[512] = {0,};
+		size_t data_size;
+		if((ret = ipc->receiveIPCMessageMQ(data, &data_size)) != IPC_ERR_NONE){
+			ofs<<"ipc receive error:"<<ret<<std::endl;
+			return; 
+		}
+
+		ofs<<" === received buffer ==="<<std::endl;
+		for(int i = 0; i < data_size; i++)
+			ofs<<data[i];
+		ofs<<std::endl;
+		ofs<<"=== received buffer end ==="<<std::endl;
+
+		if((ret = ipc->sendIPCMessageMQ(data, data_size)) != IPC_ERR_NONE){
+			ofs<<"ipc send error:"<<ret<<std::endl;
+			return;
+		}
 	}
-	ofs<<"ipc receive "<<ret<<std::endl;
-	ofs<<"received from ipc : "<<data[0]<<", "<<data[1]<<std::endl;
-	
+
 	ipc->closeIPCMQ();
 }

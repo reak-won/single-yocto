@@ -19,7 +19,7 @@ S = "${WORKDIR}/sec"
 
 #secd systemd enable
 DEPENDS ?= ""
-DEPENDS =+ " systemd"
+DEPENDS =+ " systemd openssl"
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE:${PN} = "sec-daemon.service sec-core.service"
 SYSTEMD_AUTO:ENABLE = "enable"
