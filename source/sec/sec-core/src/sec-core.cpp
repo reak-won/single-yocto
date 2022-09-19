@@ -174,10 +174,11 @@ int main(){
 	char logbuf[128]={0,};
 	while(1){
 		ssize_t len = recv_udp_msg(buf);
+
 		memset(logbuf, 0, 128);
 		sprintf(logbuf,"received len:%d\n",len);
 		log(logbuf);
-		buf[0]= 97;
+
 		send_udp_msg(buf,sizeof(buf));
 	}
 
