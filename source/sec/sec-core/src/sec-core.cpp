@@ -97,10 +97,10 @@ socklen_t recv_udp_msg(uint8_t *buf){
 
 	socklen_t slen, recv_len;
 	memset(buf, 0, MAX_BUF_SIZE);
-	log("recv wait\n");
 	if((recv_len = recvfrom(sock, buf, MAX_BUF_SIZE, 0, (struct sockaddr*)&client_addr, &slen)) == -1) die("recv from");
-
-	log(buf, recv_len);
+	
+	buf[recv_len] = '\n';
+	log(buf, recv_len+1);
 	
 	return recv_len;
 }
@@ -110,7 +110,6 @@ ssize_t send_udp_msg(uint8_t *buf, size_t len){
 	ssize_t sent_bytes;
 	if((sent_bytes = sendto(sock, buf, len, 0, (struct sockaddr*)&client_addr, slen)) == -1) 
 		die("sendto() error\n");
-	log("sendto\n");
 	return sent_bytes;	
 }
 void aes_test(){
@@ -174,7 +173,8 @@ int main(){
 	char logbuf[128]={0,};
 	while(1){
 		ssize_t len = recv_udp_msg(buf);
-
+		
+		// Length Log Insert
 		memset(logbuf, 0, 128);
 		sprintf(logbuf,"received len:%d\n",len);
 		log(logbuf);

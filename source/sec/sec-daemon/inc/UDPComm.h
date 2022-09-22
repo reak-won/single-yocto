@@ -13,19 +13,19 @@
 #define ERR_SOCK_OPEN_FAIL -1
 #define ERR_SOCK_SEND_FAIL -2
 #define ERR_SOCK_RECV_FAIL -3
-class Daemon{
+class UDPComm{
 private:
 	std::ofstream ofs;
 	struct sockaddr_in6 server_addr;
 	int sock;
 
 public:
-	Daemon();
-	~Daemon();	
+	UDPComm();
+	~UDPComm();	
 	void log(const std::string &msg);
 	int open_log_outputstream();
 	int create_udp_sock();
-	int send_udp_msg(const char*);
-	socklen_t recv_udp_msg(char*, size_t);
+	int send_udp_msg(uint8_t *, uint32_t );
+	socklen_t recv_udp_msg(uint8_t *, uint32_t);
 };
 #endif

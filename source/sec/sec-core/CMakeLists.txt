@@ -6,3 +6,6 @@ FILE(GLOB SRCS src/*.cpp src/*.c)
 
 add_executable(sec-core ${SRCS})
 target_link_libraries(sec-core crypto)
+
+#use the header files like placing current directories
+target_include_directories(sec-core PRIVATE ${CMAKE_SOURCE_DIR}/public)

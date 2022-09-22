@@ -9,6 +9,6 @@ add_executable(secd ${SRCS})
 target_link_libraries(secd secapi)
 
 #To enable #include "sec-api.h" or #include <sec-api.h>
-target_include_directories(secd PRIVATE ${CMAKE_SOURCE_DIR}/sec-api/inc)
+target_include_directories(secd PRIVATE ${CMAKE_SOURCE_DIR}/sec-api/inc ${CMAKE_SOURCE_DIR}/public)
 
 #install(TARGETS secd DESTINATION bin)
